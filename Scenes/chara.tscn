@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dohlrg1d44jo4"]
+
+[ext_resource type="Script" uid="uid://cyhkbq8fhnkl0" path="res://Scripts/character.gd" id="1_n75om"]
+[ext_resource type="Texture2D" uid="uid://voaih5aylmo0" path="res://Assets/images/character_backgrounds/solips.png" id="2_kco1d"]
+[ext_resource type="Shader" uid="uid://dh8auvmei6ob4" path="res://Shaders/card_tilt.gdshader" id="2_n75om"]
+[ext_resource type="Texture2D" uid="uid://dxqtxc71526mk" path="res://Assets/images/characters/solips.png" id="3_n75om"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slkrq"]
+shader = ExtResource("2_n75om")
+shader_parameter/tilt_x = 0.0
+shader_parameter/tilt_y = 0.0
+shader_parameter/shadow_strength = 0.3
+shader_parameter/highlight_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n75om"]
+shader = ExtResource("2_n75om")
+shader_parameter/tilt_x = 0.0
+shader_parameter/tilt_y = 0.0
+shader_parameter/shadow_strength = 0.3
+shader_parameter/highlight_strength = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kco1d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kco1d"]
+bg_color = Color(1, 1, 1, 0.3529412)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_slkrq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nj7oi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n75om"]
+
+[node name="Chara" type="Control" unique_id=1382025641]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1650.0
+offset_bottom = -811.45996
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n75om")
+
+[node name="BG" type="TextureRect" parent="." unique_id=1682639157]
+material = SubResource("ShaderMaterial_slkrq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kco1d")
+expand_mode = 1
+
+[node name="character" type="TextureRect" parent="." unique_id=1972222652]
+material = SubResource("ShaderMaterial_n75om")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.085185185
+anchor_top = -0.13898182
+anchor_right = 1.0875798
+anchor_bottom = 1.0337832
+offset_right = -58.799194
+offset_bottom = -84.6142
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2177747, 1.2177747)
+texture = ExtResource("3_n75om")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1069228768]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kco1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kco1d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_slkrq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nj7oi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n75om")
+
+[connection signal="button_down" from="Button" to="." method="_on_clicked"]

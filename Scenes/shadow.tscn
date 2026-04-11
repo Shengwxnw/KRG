@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dvc8irwjsd35h"]
+
+[ext_resource type="Script" uid="uid://d3wm4tsovk4qm" path="res://Scripts/shadow.gd" id="1_wjdoq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrfku"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="shadow" type="Control" unique_id=1256240167 node_paths=PackedStringArray("panel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wjdoq")
+panel = NodePath("Panel")
+
+[node name="Panel" type="Panel" parent="." unique_id=905428063]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hrfku")

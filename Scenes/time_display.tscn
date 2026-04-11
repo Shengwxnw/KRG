@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bap28njj3qux0"]
+
+[ext_resource type="PackedScene" uid="uid://b7u28i2lq3ig0" path="res://Scenes/coin_holder.tscn" id="1_6ifab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ifab"]
+bg_color = Color(0.7766642, 0.5525043, 0.15901169, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[node name="time_display" type="Control" unique_id=869092175]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="panel" parent="." unique_id=1351381696 instance=ExtResource("1_6ifab")]
+layout_mode = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6ifab")

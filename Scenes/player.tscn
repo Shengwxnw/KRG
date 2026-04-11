@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cyr8yp3kmr811"]
+
+[ext_resource type="PackedScene" uid="uid://dohlrg1d44jo4" path="res://Scenes/chara.tscn" id="1_6t5aa"]
+[ext_resource type="Script" uid="uid://db80htcjjq3io" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="PackedScene" uid="uid://oqhmki04kxmi" path="res://Scenes/field.tscn" id="2_vgqql"]
+[ext_resource type="PackedScene" uid="uid://cinojyi6tteou" path="res://Scenes/card.tscn" id="3_fkybt"]
+
+[node name="Player" type="Node" unique_id=1430367983]
+script = ExtResource("1_v0iea")
+
+[node name="Chara1" parent="." unique_id=1382025641 instance=ExtResource("1_6t5aa")]
+offset_left = 1020.0
+offset_top = 750.0
+offset_right = -630.0
+offset_bottom = -61.45996
+
+[node name="Chara2" parent="." unique_id=375836267 instance=ExtResource("1_6t5aa")]
+offset_left = 630.0
+offset_top = 750.0
+offset_right = -1020.0
+offset_bottom = -61.45996
+
+[node name="Armor" type="Node" parent="." unique_id=864131556]
+
+[node name="square" parent="Armor" unique_id=1632435644 instance=ExtResource("2_vgqql")]
+offset_left = 420.0
+offset_top = 960.0
+offset_right = -1320.0
+offset_bottom = -59.999756
+
+[node name="square2" parent="Armor" unique_id=530639459 instance=ExtResource("2_vgqql")]
+offset_left = 210.0
+offset_top = 960.0
+offset_right = -1530.0
+offset_bottom = -60.0
+
+[node name="Field" type="Node" parent="." unique_id=1266383264]
+
+[node name="square" parent="Field" unique_id=575466974 instance=ExtResource("2_vgqql")]
+offset_left = 420.0
+offset_top = 630.0
+offset_right = -1320.0
+offset_bottom = -390.0
+
+[node name="square3" parent="Field" unique_id=2048475714 instance=ExtResource("2_vgqql")]
+offset_left = 210.0
+offset_top = 630.0
+offset_right = -1530.0
+offset_bottom = -390.0
+
+[node name="Deck" type="Node" parent="." unique_id=2014633387]
+
+[node name="Control" parent="Deck" unique_id=44771706 instance=ExtResource("3_fkybt")]
+offset_left = 1410.0
+offset_top = 887.0
+offset_right = 1710.0
+offset_bottom = 1307.0
+
+[node name="Control2" parent="Deck" unique_id=1483083989 instance=ExtResource("3_fkybt")]
+offset_left = 1380.0
+offset_top = 887.0
+offset_right = 1680.0
+offset_bottom = 1307.0
+
+[node name="Control3" parent="Deck" unique_id=969054377 instance=ExtResource("3_fkybt")]
+offset_left = 1350.0
+offset_top = 887.0
+offset_right = 1650.0
+offset_bottom = 1307.0
+
+[node name="Control4" parent="Deck" unique_id=1467145707 instance=ExtResource("3_fkybt")]
+offset_left = 1320.0
+offset_top = 887.0
+offset_right = 1620.0
+offset_bottom = 1307.0

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b7u28i2lq3ig0"]
+
+[ext_resource type="Script" uid="uid://cy2ox7qqufvv3" path="res://Scripts/coin_holder.gd" id="1_c0g6r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbxea"]
+bg_color = Color(0.23410222, 0.62032497, 0.9586322, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[node name="coin_holder" type="Panel" unique_id=1351381696]
+offset_right = 90.0
+offset_bottom = 960.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hbxea")
+script = ExtResource("1_c0g6r")

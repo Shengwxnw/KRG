@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://bej0l50rsebw0"]
+
+[ext_resource type="PackedScene" uid="uid://dohlrg1d44jo4" path="res://Scenes/chara.tscn" id="1_21xkr"]
+[ext_resource type="PackedScene" uid="uid://oqhmki04kxmi" path="res://Scenes/field.tscn" id="2_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cyr8yp3kmr811" path="res://Scenes/player.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://ctlyv2iquyp3g" path="res://Scenes/hp_bar.tscn" id="3_8gbba"]
+
+[sub_resource type="Theme" id="Theme_8gbba"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kry3j"]
+bg_color = Color(0.9412172, 0.25149065, 0.8591586, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[node name="main" type="Node2D" unique_id=749678301]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=904597072]
+
+[node name="BG" type="ColorRect" parent="CanvasLayer" unique_id=1300647176]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.95222086, 0.9830782, 0.8858134, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Player2" parent="CanvasLayer" unique_id=98555556 instance=ExtResource("2_bo1nx")]
+offset_left = 600.0
+offset_top = 780.0
+offset_right = -1050.0
+offset_bottom = -60.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Player3" parent="CanvasLayer" unique_id=774748650 instance=ExtResource("2_bo1nx")]
+offset_left = 990.0
+offset_top = 60.0
+offset_right = -660.0
+offset_bottom = -780.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Player4" parent="CanvasLayer" unique_id=1232783069 instance=ExtResource("2_bo1nx")]
+offset_left = 600.0
+offset_top = 60.0
+offset_right = -1050.0
+offset_bottom = -780.0
+metadata/_edit_use_anchors_ = true
+
+[node name="field" parent="CanvasLayer" unique_id=1632435644 instance=ExtResource("2_8gbba")]
+offset_left = 180.0
+offset_top = 630.0
+offset_right = -1560.0
+offset_bottom = -390.0
+metadata/_edit_use_anchors_ = true
+
+[node name="field2" parent="CanvasLayer" unique_id=196167091 instance=ExtResource("2_8gbba")]
+offset_left = 390.0
+offset_top = 630.0
+offset_right = -1350.0
+offset_bottom = -390.0
+metadata/_edit_use_anchors_ = true
+
+[node name="field3" parent="CanvasLayer" unique_id=1952319191 instance=ExtResource("2_8gbba")]
+offset_left = 180.0
+offset_top = 390.0
+offset_right = -1560.0
+offset_bottom = -630.0
+metadata/_edit_use_anchors_ = true
+
+[node name="field4" parent="CanvasLayer" unique_id=1011483433 instance=ExtResource("2_8gbba")]
+offset_left = 390.0
+offset_top = 390.0
+offset_right = -1350.0
+offset_bottom = -630.0
+metadata/_edit_use_anchors_ = true
+
+[node name="hp_box" parent="CanvasLayer" unique_id=814190275 instance=ExtResource("3_8gbba")]
+offset_left = 600.0
+offset_top = 720.0
+offset_right = -1050.0
+offset_bottom = -435.0
+metadata/_edit_use_anchors_ = true
+
+[node name="hp_box2" parent="CanvasLayer" unique_id=1999855285 instance=ExtResource("3_8gbba")]
+offset_left = 990.0
+offset_top = 720.0
+offset_right = -660.0
+offset_bottom = -435.0
+metadata/_edit_use_anchors_ = true
+
+[node name="hp_box3" parent="CanvasLayer" unique_id=1416861105 instance=ExtResource("3_8gbba")]
+offset_left = 600.0
+offset_top = 435.0
+offset_right = -1050.0
+offset_bottom = -720.0
+metadata/_edit_use_anchors_ = true
+
+[node name="hp_box4" parent="CanvasLayer" unique_id=1115784713 instance=ExtResource("3_8gbba")]
+offset_left = 990.0
+offset_top = 435.0
+offset_right = -660.0
+offset_bottom = -720.0
+metadata/_edit_use_anchors_ = true
+
+[node name="square" parent="CanvasLayer" unique_id=1824997664 instance=ExtResource("2_8gbba")]
+offset_left = 180.0
+offset_top = 960.0
+offset_right = -1560.0
+offset_bottom = -60.0
+theme = SubResource("Theme_8gbba")
+metadata/_edit_use_anchors_ = true
+
+[node name="square2" parent="CanvasLayer" unique_id=927790723 instance=ExtResource("2_8gbba")]
+offset_left = 390.0
+offset_top = 960.0
+offset_right = -1350.0
+offset_bottom = -60.0
+theme = SubResource("Theme_8gbba")
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1614280099]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 120.0
+offset_bottom = 120.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=1832747417]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kry3j")
+metadata/_edit_use_anchors_ = true
+
+[node name="Control2" type="Control" parent="CanvasLayer" unique_id=974844084]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 120.0
+offset_bottom = 120.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control2" unique_id=1284005558]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1050.0
+offset_bottom = 1050.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kry3j")
+metadata/_edit_use_anchors_ = true
+
+[node name="Control3" type="Control" parent="CanvasLayer" unique_id=23992066]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1800.0
+offset_top = 30.0
+offset_right = 1890.0
+offset_bottom = 120.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control3" unique_id=1639743762]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1050.0
+offset_bottom = 1050.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kry3j")
+
+[node name="Chara" parent="CanvasLayer" unique_id=1382025641 instance=ExtResource("1_21xkr")]
+z_index = 3
+offset_left = 990.0
+offset_top = 780.0
+offset_right = -660.0
+offset_bottom = -31.45996
+
+[node name="Control4" type="Control" parent="CanvasLayer" unique_id=928082269]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1770.0
+offset_top = -1020.0
+offset_right = 1860.0
+offset_bottom = -930.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control4" unique_id=1870215118]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33333334
+anchor_right = 1.3333334
+anchor_bottom = 1.0
+offset_top = 1050.0
+offset_bottom = 1050.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kry3j")
+metadata/_edit_use_anchors_ = true

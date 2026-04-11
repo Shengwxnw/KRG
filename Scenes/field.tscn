@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://oqhmki04kxmi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkatj"]
+bg_color = Color(0.99999994, 0.35640752, 0.08475687, 1)
+
+[node name="square" type="Control" unique_id=1632435644]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1740.0
+offset_bottom = -1020.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1882932883]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pkatj")

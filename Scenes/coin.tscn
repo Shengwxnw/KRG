@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://be1jwuod406d8"]
+
+[ext_resource type="Script" uid="uid://b1f1si1gm5i2p" path="res://Scripts/coin.gd" id="1_2qo34"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgwqp"]
+bg_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="coin" type="Panel" unique_id=1238866459]
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sgwqp")
+script = ExtResource("1_2qo34")

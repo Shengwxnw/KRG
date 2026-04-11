@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cnw2qyb1a40ck"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_niiub"]
+bg_color = Color(0.76493853, 0.56154925, 0.060974054, 1)
+
+[node name="prev_action" type="Control" unique_id=1749378699]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1500.0
+offset_bottom = -930.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=916589626]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_niiub")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel" unique_id=2080091628]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 45
+text = "LOG"

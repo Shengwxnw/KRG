@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://o2ewfgbv2pkp"]
+
+[ext_resource type="Script" uid="uid://wff2lknxl1dc" path="res://Scripts/loading.gd" id="1_fim2r"]
+[ext_resource type="StyleBox" uid="uid://b1ix4hyxgto0g" path="res://Scenes/new_style_box_flat.tres" id="2_k66n3"]
+
+[node name="loading" type="Control" unique_id=1156924019]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fim2r")
+
+[node name="centre_square" type="Panel" parent="." unique_id=150787075]
+z_index = 1
+layout_mode = 0
+offset_left = 875.0
+offset_top = 515.0
+offset_right = 1044.71
+offset_bottom = 684.71
+rotation = 0.7853982
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(84.85, 84.85)
+theme_override_styles/panel = ExtResource("2_k66n3")
+
+[node name="right_panel" type="Panel" parent="." unique_id=2035717075]
+z_index = -1
+layout_mode = 0
+offset_left = 960.0
+offset_top = 1200.0
+offset_right = 960.0
+offset_bottom = 2400.0
+rotation = 3.1415927
+theme_override_styles/panel = ExtResource("2_k66n3")
+
+[node name="left_panel" type="Panel" parent="." unique_id=1477752527]
+z_index = -1
+layout_mode = 0
+offset_left = 960.0
+offset_right = 960.0
+offset_bottom = 1200.0
+theme_override_styles/panel = ExtResource("2_k66n3")
+
+[node name="Control" type="Control" parent="." unique_id=1547595884]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="Control" unique_id=801363191]
+color = Color(0.7490196, 0.98039216, 0.8352941, 1)
+polygon = PackedVector2Array(600, 0, 600, 0, 0, -600, 120, -600, 720, 0, 120, 600, 0, 600)
+
+[node name="Control2" type="Control" parent="." unique_id=1681001021]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_right = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="Control2" unique_id=1909401545]
+color = Color(0.72046465, 0.8912968, 0.8259084, 1)
+polygon = PackedVector2Array(600, 0, 600, 0, 0, -600, 120, -600, 720, 0, 120, 600, 0, 600)
+
+[node name="Control3" type="Control" parent="." unique_id=719955096]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 240.0
+offset_right = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="Control3" unique_id=1470925981]
+color = Color(0.8246836, 0.8985954, 0.92044, 1)
+polygon = PackedVector2Array(600, 0, 600, 0, 0, -600, 120, -600, 720, 0, 120, 600, 0, 600)
+
+[node name="Control4" type="Control" parent="." unique_id=591028972]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="Control4" unique_id=2126388935]
+scale = Vector2(-1, 1)
+color = Color(0.7490196, 0.98039216, 0.8352941, 1)
+polygon = PackedVector2Array(600, 0, 600, 0, 0, -600, 120, -600, 720, 0, 120, 600, 0, 600)
+
+[node name="Control5" type="Control" parent="." unique_id=1245867396]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_right = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="Control5" unique_id=247787345]
+position = Vector2(-240, 0)
+scale = Vector2(-1, 1)
+color = Color(0.72046465, 0.8912968, 0.8259084, 1)
+polygon = PackedVector2Array(600, 0, 600, 0, 0, -600, 120, -600, 720, 0, 120, 600, 0, 600)
+
+[node name="Control6" type="Control" parent="." unique_id=107742341]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_right = -240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="Control6" unique_id=1965206684]
+scale = Vector2(-1, 1)
+color = Color(0.8246836, 0.8985954, 0.92044, 1)
+polygon = PackedVector2Array(600, 0, 600, 0, 0, -600, 120, -600, 720, 0, 120, 600, 0, 600)
