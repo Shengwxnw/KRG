@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="CardGameDemo"
+config/name="Card"
 run/main_scene="uid://jikx71yp0joc"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://qs7d4av78cgt"
 CoinFlyManager="*uid://21btfnnvmvh3"
+SignalBus="*uid://ptsdmkctndyt"
+InputManager="*uid://j40uei5usdin"
 
 [display]
 
@@ -29,6 +31,14 @@ window/size/resizable=false
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/nklbdev.importality/plugin.cfg")
+
+[input]
+
+deal_damage={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+]
+}
 
 [physics]
 

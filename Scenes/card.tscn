@@ -1,34 +1,8 @@
 [gd_scene format=3 uid="uid://cinojyi6tteou"]
 
 [ext_resource type="Script" uid="uid://dhlgsifc4y7rd" path="res://Scripts/card.gd" id="1_wf8id"]
-[ext_resource type="Texture2D" uid="uid://x157y7gadkfj" path="res://icon.svg" id="2_wf8id"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eumee"]
-bg_color = Color(1, 1, 1, 1)
-border_color = Color(0.44849676, 0.7383332, 0.9176803, 1)
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6po8"]
-bg_color = Color(0.6, 0.6, 0.6, 0.21176471)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.9157694, 0.9157694, 0.91576916, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnspj"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.94915587, 0.7736929, 0.88030803, 1)
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
-corner_detail = 20
+[ext_resource type="Texture2D" uid="uid://djaphk60r24lq" path="res://Assets/images/cards/basic/break_note.png" id="2_brehn"]
+[ext_resource type="Texture2D" uid="uid://c6a2lvjar4esi" path="res://Assets/images/costs/0-1.png" id="3_eumee"]
 
 [sub_resource type="FontFile" id="FontFile_xnv4g"]
 subpixel_positioning = 0
@@ -155,7 +129,7 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 
-[node name="Control" type="Control" unique_id=44771706]
+[node name="Card" type="Control" unique_id=44771706]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 300.0
@@ -163,66 +137,29 @@ offset_bottom = 420.0
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_wf8id")
 
-[node name="bg" type="Panel" parent="." unique_id=906416481]
+[node name="Type" type="TextureRect" parent="." unique_id=702725468]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_eumee")
+texture = ExtResource("2_brehn")
+expand_mode = 1
 
-[node name="rect" type="Panel" parent="." unique_id=1924059126]
+[node name="Name" type="Label" parent="." unique_id=1992375201]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -43.0
+offset_top = -21.0
+offset_right = 43.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 0.7853982
-scale = Vector2(5.273784, 5.273784)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_styles/panel = SubResource("StyleBoxFlat_e6po8")
-
-[node name="rect2" type="Panel" parent="." unique_id=1701787681]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.7853982
-scale = Vector2(2.809244, 2.809244)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_styles/panel = SubResource("StyleBoxFlat_e6po8")
-
-[node name="border" type="Panel" parent="." unique_id=1057978174]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bnspj")
-
-[node name="cost_label" type="Label" parent="." unique_id=1992375201]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 5.0
-offset_right = 59.0
-offset_bottom = 47.0
 scale = Vector2(1.3685672, 1.3685672)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
@@ -232,19 +169,17 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = SubResource("FontFile_xnv4g")
 theme_override_font_sizes/font_size = 31
 theme_override_styles/normal = SubResource("StyleBoxEmpty_u5wvb")
-text = "3"
+text = "Attack"
+vertical_alignment = 1
 
-[node name="type_icon" type="TextureRect" parent="." unique_id=153247428]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_wf8id")
+[node name="Cost" type="TextureRect" parent="." unique_id=1685660961]
+layout_mode = 0
+offset_left = 23.333332
+offset_top = 16.666666
+offset_right = 73.33333
+offset_bottom = 69.99999
+texture = ExtResource("3_eumee")
+expand_mode = 1
+stretch_mode = 4
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

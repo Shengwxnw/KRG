@@ -1,28 +1,56 @@
 # Game.gd
 extends Node
 
-@onready var turn_manager     : Node        = $turn_manager
-@onready var phase_banner      : CanvasLayer = $phase_banner
-@onready var overlay           : Panel       = $overlay
-@onready var coin_bar_p1       : Panel       = $UI/Neutral/coin_holder
-@onready var coin_bar_p2       : Panel       = $UI/Neutral/coin_holder
-@onready var card_effect_system: Node        = $card_effect_system
+@onready var turn_manager      : Node        = $turn_manager
+@onready var phase_banner      : CanvasLayer = $Top/phase_banner
+@onready var overlay           : Panel       = $UI/overlay
+@onready var coin_bar_p1       : Control       = $UI/Neutral/coin_bar
+@onready var coin_bar_p2       : Control       = $UI/Neutral/coin_bar
+@onready var UI                : CanvasLayer = $UI
+@onready var player_scene      : PackedScene = preload("res://Scenes/player.tscn")
 
 
 func _ready() -> void:
+	_setup_card_executor()
+	_setup_game()
 	_connect_signals()
-	_setup_hp_bars()
-	turn_manager.start_game()
+
+func _setup_game():
+	_setup_player()
+
+func _setup_card_executor():
+	var ce := Node.new()
+	ce.name = "card_executor"
+	ce.set_script(preload("res://Scripts/card_executor.gd"))
+	add_child(ce)
+
+func _setup_player():
+	var player1 = player_scene.instantiate()
+	player1.side = 1
+	player1.game = self
+	var player2 = player_scene.instantiate()
+	player2.side = 2
+	player2.game = self
+	player1.opponent = player2
+	player2.opponent = player1
+	UI.add_child(player1)
+	UI.add_child(player2)
+	_register_hp_bars()
 
 
-func _setup_hp_bars() -> void:
-	var hp_bar_p1 = $UI/hp_bar_p1 as HPBar
-	var hp_bar_p2 = $UI/hp_bar_p2 as HPBar
-	if hp_bar_p1:
-		GameManager.register_hp_bar(1, hp_bar_p1)
-	if hp_bar_p2:
-		GameManager.register_hp_bar(2, hp_bar_p2)
-
+func _register_hp_bars() -> void:
+	var script := preload("res://Scripts/hp_bar.gd")
+	for node in get_tree().get_nodes_in_group("player"):
+		if node is Player:
+			for char_id in [1, 2]:
+				var raw := node.get_node_or_null("Chara%d/hp_bar" % char_id)
+				if raw:
+					raw.set_script(script)
+					raw.init()
+					GameManager.register_hp_bar(node.side, char_id, raw)
+				var streak := node.get_node_or_null("Chara%d/Streak" % char_id) as Label
+				if streak:
+					GameManager.register_streak_label(node.side, char_id, streak)
 
 func _connect_signals() -> void:
 	CoinFlyManager.coin_bar = coin_bar_p1
@@ -49,14 +77,33 @@ func _on_turn_started(turn_number: int) -> void:
 
 func _on_coins_granted(amount: int) -> void:
 	await phase_banner.show_phase("发币")
-	var from_pos := get_viewport().get_visible_rect().get_center()
-	await CoinFlyManager.play_coin_fly(amount, from_pos)
+	var center := get_viewport().get_visible_rect().get_center()
+	var p2_pos := Vector2(center.x, center.y - 300)
+	var t1 := CoinFlyManager.play_coin_fly(amount, center, coin_bar_p1.global_position, true)
+	var t2 := CoinFlyManager.play_coin_fly(amount, center, p2_pos, false)
+	await t1.timeout
+	await t2.timeout
 	turn_manager.ready_to_deal_coins.emit()
 
-func _on_cards_drawn(_amount: int) -> void:
-	await phase_banner.show_phase("发牌")
-	# 后续接 HandManager
+func _on_cards_drawn(player_id: int, amount: int) -> void:
+	var player := _get_player(player_id)
+	var drawn_count := 0
+	if player:
+		var drawn_cards := player.hand_manager.draw_from_deck(amount)
+		drawn_count = drawn_cards.size()
+		if drawn_count > 0:
+			player.animate_draw(drawn_cards)
+	await phase_banner.show_phase("玩家 %d 抽 %d 张牌" % [player_id, drawn_count])
+	if drawn_count > 0:
+		await get_tree().create_timer(0.8).timeout
 	turn_manager.ready_to_deal_cards.emit()
+
+
+func _get_player(player_id: int) -> Player:
+	for node in get_tree().get_nodes_in_group("player"):
+		if node is Player and node.side == player_id:
+			return node
+	return null
 
 func _on_pre_settle() -> void:
 	await phase_banner.show_phase("先行结算")
@@ -78,8 +125,7 @@ func _on_turn_ended(turn_number: int) -> void:
 
 
 func _on_shield_changed(player_id: int, amount: int) -> void:
-	if GameManager.hp_bars.has(player_id):
-		GameManager.hp_bars[player_id].set_shield(amount)
+	pass  # HPBar.set_shield handles the display via GameManager._update_shield_display
 
 
 func _on_damage_dealt(target_player: int, amount: int, from_card: CardData) -> void:
@@ -88,30 +134,26 @@ func _on_damage_dealt(target_player: int, amount: int, from_card: CardData) -> v
 		_flash_hp_bar(target_player)
 
 
+
+
 func _shake_screen() -> void:
-	var cam := get_viewport().get_camera_2d()
-	if cam == null:
-		cam = get_parent().get_node_or_null("Camera2D") as Node2D
-	
-	var original_pos := Vector2.ZERO
 	var tween := create_tween()
 	for i in 4:
-		var offset := Vector2(randf_range(-8, 8), randf_range(-8, 8))
-		tween.tween_property(self, "position", original_pos + offset, 0.05)
-		tween.tween_property(self, "position", original_pos, 0.05)
-	tween.tween_callback(_end_shake)
-
-
-func _end_shake() -> void:
-	coin_bar_p1.position = Vector2.ZERO
+		var offset := Vector2(randf_range(-5, 5), randf_range(-5, 5))
+		tween.tween_property(overlay, "position", offset, 0.05)
+		tween.tween_property(overlay, "position", Vector2.ZERO, 0.05)
 
 
 func _flash_hp_bar(player_id: int) -> void:
-	if GameManager.hp_bars.has(player_id):
-		var hp_bar = GameManager.hp_bars[player_id]
+	var char_bars = GameManager.hp_bars.get(player_id, {})
+	if char_bars.is_empty():
+		return
+	var char_id = GameManager.active_character.get(player_id, 1)
+	var hp_bar = char_bars.get(char_id)
+	if hp_bar:
 		var original_modulate = hp_bar.modulate
-		hp_bar.modulate = Color(1, 0.3, 0.3, 1)
-		await get_tree().create_timer(0.15).timeout
+		hp_bar.modulate = Color(1, 0.3, 0.3)
+		get_tree().create_tween().tween_interval(0.15)
 		hp_bar.modulate = original_modulate
 
 
@@ -120,10 +162,6 @@ func _on_game_over(winner_id: int) -> void:
 	await phase_banner.show_phase("玩家 %d 获胜" % winner_id)
 
 
-# ── 玩家输入（暂时用键盘测试）────────────────────
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):   # 空格/Enter = 结束行动
-		turn_manager.notify_action_done(turn_manager.current_acting_player)
-	if event.is_action_pressed("ui_cancel"):   # Esc = 结束回合
-		turn_manager.notify_end_turn(turn_manager.current_acting_player)
+func _test() -> void:
+	turn_manager.start_game()

@@ -14,7 +14,6 @@ func _ready() -> void:
 	overlay.modulate.a = 0
 
 func show_phase(text: String) -> void:
-	visible = true
 	label.text = text
 
 	var viewport_h := get_viewport().get_visible_rect().size.y
@@ -46,4 +45,3 @@ func show_phase(text: String) -> void:
 		 .set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 
 	await tween.finished
-	visible = false

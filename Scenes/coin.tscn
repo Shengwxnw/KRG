@@ -1,16 +1,21 @@
 [gd_scene format=3 uid="uid://be1jwuod406d8"]
 
-[ext_resource type="Script" uid="uid://b1f1si1gm5i2p" path="res://Scripts/coin.gd" id="1_2qo34"]
+[ext_resource type="Texture2D" uid="uid://q1a8h323rqia" path="res://Assets/images/others/coin.png" id="1_2qo34"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgwqp"]
-bg_color = Color(1, 1, 0, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+[node name="Control" type="Control" unique_id=1093907033]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 75.0
+offset_bottom = 75.0
 
-[node name="coin" type="Panel" unique_id=1238866459]
-offset_right = 60.0
-offset_bottom = 60.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sgwqp")
-script = ExtResource("1_2qo34")
+[node name="TextureRect" type="TextureRect" parent="." unique_id=534110867]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_right = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2qo34")
+expand_mode = 1

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://4yhimu3ctyvy"]
+
+[ext_resource type="Script" uid="uid://dp0b0j13bbfom" path="res://Scripts/overlay.gd" id="1_mvb6l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dryh"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="overlay" type="Panel" unique_id=1302907351]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3dryh")
+script = ExtResource("1_mvb6l")

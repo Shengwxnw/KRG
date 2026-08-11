@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bnfkmk5f434gy"]
+
+[ext_resource type="Texture2D" uid="uid://x157y7gadkfj" path="res://icon.svg" id="1_3mm4w"]
+[ext_resource type="Script" uid="uid://cu1cq8sfkb76s" path="res://Scripts/side_bar.gd" id="1_4fv1s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lvw1"]
+bg_color = Color(0.7019608, 0.8784314, 0.8627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mm4w"]
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fv1s"]
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="SideBar" type="Control" unique_id=89001580]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1440.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4fv1s")
+
+[node name="BG" type="Panel" parent="." unique_id=684901652]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7lvw1")
+
+[node name="Name" type="Panel" parent="." unique_id=1425730701]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 420.0
+offset_bottom = 150.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Name" unique_id=1524754757]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 41
+bbcode_enabled = true
+text = "Card"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Jacket" type="Control" parent="." unique_id=1610791916]
+anchors_preset = 0
+offset_left = 60.0
+offset_top = 180.0
+offset_right = 420.0
+offset_bottom = 540.0
+
+[node name="TextureRect" type="TextureRect" parent="Jacket" unique_id=1413252278]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3mm4w")
+
+[node name="Description" type="Panel" parent="." unique_id=877643096]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 570.0
+offset_right = 420.0
+offset_bottom = 900.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Description" unique_id=981848801]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/italics_font_size = 26
+bbcode_enabled = true
+text = "对敌方前台目标造成[i]1[/i]点伤害"
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="." unique_id=111784317]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 960.0
+offset_right = 420.0
+offset_bottom = 1020.0
+theme_override_font_sizes/font_size = 29
+theme_override_styles/normal = SubResource("StyleBoxFlat_3mm4w")
+text = "打出"
+
+[node name="Sell" type="Button" parent="." unique_id=288949067]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 1080.0
+offset_right = 420.0
+offset_bottom = 1140.0
+theme_override_font_sizes/font_size = 29
+theme_override_styles/normal = SubResource("StyleBoxFlat_4fv1s")
+text = "卖掉(1币)"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Sell" to="." method="_on_sell_pressed"]

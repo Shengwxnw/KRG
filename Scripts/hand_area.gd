@@ -1,89 +1,62 @@
 # HandArea.gd
 class_name HandArea
-extends Control
+extends Node
 
 signal closed
 signal card_played(card: Card)
 
-@export var card_scene : PackedScene
+@onready var card_scene : PackedScene = preload("res://Scenes/card.tscn")
+@onready var hand_area  : Panel      = $HandArea
+@onready var overlay    : Panel      = $overlay
 
-const CARD_WIDTH     := 120.0
-const CARD_SPACING   := 20.0
-const SLIDE_DURATION := 0.35
+const CARD_SCALE   := 0.72
+const CARD_WIDTH   := 300.0
+const CARD_HEIGHT  := 420.0
+const CARD_STEP    := 208.0
 
-var _cards : Array[Card] = []
-var _is_open : bool = false
+var _cards   : Array[Card]   = []
+var _is_open : bool          = false
+
+
+func _ready() -> void:
+	hand_area.position.y = get_viewport().size.y
 
 
 func open(card_data_list: Array[CardData]) -> void:
-	if _is_open:
-		return
-	_is_open = true
-	show()
+	InputManager.register_open_hand(self)
+	var card_w := CARD_WIDTH * CARD_SCALE
+	var card_h := CARD_HEIGHT * CARD_SCALE
+	var total_w := card_w + (card_data_list.size() - 1) * CARD_STEP
+	var start_x := (hand_area.size.x - total_w) / 2.0
+	var start_y := (hand_area.size.y - card_h) / 2.0 + 20
 
-	# 先把整个手牌区从屏幕下方滑入
-	var viewport_h := get_viewport().get_visible_rect().size.y
-	position.y = viewport_h
-	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "position:y", viewport_h * 0.5, SLIDE_DURATION)
-	await tween.finished
+	for i in card_data_list.size():
+		var c := card_scene.instantiate() as Card
+		c.scale = Vector2(CARD_SCALE, CARD_SCALE)
+		c.position = Vector2(start_x + i * CARD_STEP, start_y)
+		c.z_index = i
+		hand_area.add_child(c)
+		c.show_cards = true
+		c.setup(card_data_list[i])
+		_cards.append(c)
 
-	# 生成手牌并水平排列
-	_spawn_cards(card_data_list)
+	var tween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(hand_area, "position:y", get_viewport().size.y / 2, 0.3)
+	tween.tween_callback(func(): _is_open = true)
 
 
 func close() -> void:
-	if not _is_open:
-		return
+	InputManager.unregister_open_hand(self)
 	_is_open = false
-
-	var viewport_h := get_viewport().get_visible_rect().size.y
-	var tween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "position:y", viewport_h, SLIDE_DURATION)
-	await tween.finished
-
-	_clear_cards()
-	hide()
+	overlay.fade_out(0.3)
+	var tween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(hand_area, "position:y", get_viewport().size.y, 0.3)
+	for c in _cards:
+		c.queue_free()
+	_cards.clear()
 	closed.emit()
 
 
-func _spawn_cards(card_data_list: Array[CardData]) -> void:
-	var total_w := card_data_list.size() * CARD_WIDTH \
-				 + (card_data_list.size() - 1) * CARD_SPACING
-	var start_x := (size.x - total_w) / 2.0
-
-	for i in card_data_list.size():
-		var card := card_scene.instantiate() as Card
-		add_child(card)
-		card.setup(card_data_list[i])
-		card.position = Vector2(start_x + i * (CARD_WIDTH + CARD_SPACING), 40.0)
-		card.card_played.connect(_on_card_played)
-		_cards.append(card)
-
-
-func _on_card_played(card: Card) -> void:
-	card_played.emit(card)
+func remove_card(card: Card) -> void:
 	_cards.erase(card)
 	card.queue_free()
-	_rearrange()
-
-
-func _rearrange() -> void:
-	var total_w := _cards.size() * CARD_WIDTH \
-				 + (_cards.size() - 1) * CARD_SPACING
-	var start_x := (size.x - total_w) / 2.0
-
-	for i in _cards.size():
-		var tween := _cards[i].create_tween() \
-			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-		tween.tween_property(
-			_cards[i], "position:x",
-			start_x + i * (CARD_WIDTH + CARD_SPACING),
-			0.2
-		)
-
-
-func _clear_cards() -> void:
-	for card in _cards:
-		card.queue_free()
-	_cards.clear()

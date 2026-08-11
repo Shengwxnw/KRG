@@ -3,7 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://dohlrg1d44jo4" path="res://Scenes/chara.tscn" id="1_6t5aa"]
 [ext_resource type="Script" uid="uid://db80htcjjq3io" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://oqhmki04kxmi" path="res://Scenes/field.tscn" id="2_vgqql"]
-[ext_resource type="PackedScene" uid="uid://cinojyi6tteou" path="res://Scenes/card.tscn" id="3_fkybt"]
+[ext_resource type="Script" uid="uid://b6bdunopevlxx" path="res://Scripts/hand_area.gd" id="5_x3wgy"]
+[ext_resource type="PackedScene" uid="uid://4yhimu3ctyvy" path="res://Scenes/overlay.tscn" id="6_x3wgy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3wgy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3smsa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8erm5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f1ek2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tx1dd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3smsa"]
+bg_color = Color(1, 1, 0.8235294, 0)
+border_color = Color(0.9843137, 0.69803923, 0.003921569, 1)
 
 [node name="Player" type="Node" unique_id=1430367983]
 script = ExtResource("1_v0iea")
@@ -20,15 +35,17 @@ offset_top = 750.0
 offset_right = -1020.0
 offset_bottom = -61.45996
 
-[node name="Armor" type="Node" parent="." unique_id=864131556]
+[node name="Equipment" type="Node" parent="." unique_id=864131556]
 
-[node name="square" parent="Armor" unique_id=1632435644 instance=ExtResource("2_vgqql")]
+[node name="square" parent="Equipment" unique_id=1632435644 instance=ExtResource("2_vgqql")]
+visible = false
 offset_left = 420.0
 offset_top = 960.0
 offset_right = -1320.0
 offset_bottom = -59.999756
 
-[node name="square2" parent="Armor" unique_id=530639459 instance=ExtResource("2_vgqql")]
+[node name="square2" parent="Equipment" unique_id=530639459 instance=ExtResource("2_vgqql")]
+visible = false
 offset_left = 210.0
 offset_top = 960.0
 offset_right = -1530.0
@@ -37,39 +54,47 @@ offset_bottom = -60.0
 [node name="Field" type="Node" parent="." unique_id=1266383264]
 
 [node name="square" parent="Field" unique_id=575466974 instance=ExtResource("2_vgqql")]
+visible = false
 offset_left = 420.0
 offset_top = 630.0
 offset_right = -1320.0
 offset_bottom = -390.0
 
 [node name="square3" parent="Field" unique_id=2048475714 instance=ExtResource("2_vgqql")]
+visible = false
 offset_left = 210.0
 offset_top = 630.0
 offset_right = -1530.0
 offset_bottom = -390.0
 
-[node name="Deck" type="Node" parent="." unique_id=2014633387]
+[node name="Deck" type="Node" parent="." unique_id=295960685]
 
-[node name="Control" parent="Deck" unique_id=44771706 instance=ExtResource("3_fkybt")]
-offset_left = 1410.0
-offset_top = 887.0
-offset_right = 1710.0
-offset_bottom = 1307.0
-
-[node name="Control2" parent="Deck" unique_id=1483083989 instance=ExtResource("3_fkybt")]
-offset_left = 1380.0
-offset_top = 887.0
-offset_right = 1680.0
-offset_bottom = 1307.0
-
-[node name="Control3" parent="Deck" unique_id=969054377 instance=ExtResource("3_fkybt")]
-offset_left = 1350.0
-offset_top = 887.0
-offset_right = 1650.0
-offset_bottom = 1307.0
-
-[node name="Control4" parent="Deck" unique_id=1467145707 instance=ExtResource("3_fkybt")]
+[node name="Button" type="Button" parent="." unique_id=221353523]
 offset_left = 1320.0
-offset_top = 887.0
-offset_right = 1620.0
-offset_bottom = 1307.0
+offset_top = 840.0
+offset_right = 1710.0
+offset_bottom = 1140.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x3wgy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3smsa")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8erm5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_f1ek2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tx1dd")
+
+[node name="Hand" type="Node" parent="." unique_id=1307767664]
+script = ExtResource("5_x3wgy")
+
+[node name="overlay" parent="Hand" unique_id=1302907351 instance=ExtResource("6_x3wgy")]
+visible = false
+offset_top = 600.0
+
+[node name="HandArea" type="Panel" parent="Hand" unique_id=1743526436]
+z_index = 2
+offset_top = 600.0
+offset_right = 1920.0
+offset_bottom = 1200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3smsa")
+
+[node name="HandManager" type="Node" parent="." unique_id=1576728989]
+
+[connection signal="pressed" from="Button" to="." method="_on_deck_pressed"]
+[connection signal="gui_input" from="Hand/overlay" to="." method="_on_overlay_gui_input"]

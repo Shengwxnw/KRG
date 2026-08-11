@@ -2,17 +2,13 @@
 
 [ext_resource type="Script" uid="uid://du0esjnqhrj27" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://b7u28i2lq3ig0" path="res://Scenes/coin_holder.tscn" id="1_ebmjs"]
+[ext_resource type="Texture2D" uid="uid://caqtucf5qxsli" path="res://Assets/images/Background_New.png" id="2_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://bap28njj3qux0" path="res://Scenes/time_display.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://cnw2qyb1a40ck" path="res://Scenes/battle_log.tscn" id="3_wrm1d"]
-[ext_resource type="PackedScene" uid="uid://ctlyv2iquyp3g" path="res://Scenes/hp_bar.tscn" id="4_hpbar"]
-[ext_resource type="Script" uid="uid://dp0b0j13bbfom" path="res://Scripts/overlay.gd" id="5_wowpa"]
+[ext_resource type="PackedScene" uid="uid://bnfkmk5f434gy" path="res://Scenes/side_bar.tscn" id="6_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://kmjteh2nkdxq" path="res://Scenes/phase_banner.tscn" id="6_i6g32"]
+[ext_resource type="PackedScene" uid="uid://4yhimu3ctyvy" path="res://Scenes/overlay.tscn" id="6_v158k"]
 [ext_resource type="Script" uid="uid://lsw2mlo1olxy" path="res://Scripts/turn_manager.gd" id="7_1l0tm"]
-[ext_resource type="PackedScene" uid="uid://cyr8yp3kmr811" path="res://Scenes/player.tscn" id="7_v158k"]
-[ext_resource type="Script" uid="uid://p2620ym8gx2v" path="res://Scripts/card_effect_system.gd" id="8_cardeff"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dryh"]
-bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrm1d"]
 bg_color = Color(1, 0.29200375, 0.53701854, 1)
@@ -24,30 +20,24 @@ corner_radius_bottom_left = 52
 [node name="game" type="Node" unique_id=173324726]
 script = ExtResource("1_3dryh")
 
-[node name="phase_banner" parent="." unique_id=1008792977 instance=ExtResource("6_i6g32")]
-layer = 2
-visible = false
+[node name="UI" type="CanvasLayer" parent="." unique_id=1045063318]
 
-[node name="overlay" type="Panel" parent="." unique_id=1925915066]
-visible = false
+[node name="BG" type="TextureRect" parent="UI" unique_id=556326852]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3dryh")
-script = ExtResource("5_wowpa")
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=1045063318]
+texture = ExtResource("2_h4fw4")
+expand_mode = 1
 
 [node name="Neutral" type="Node" parent="UI" unique_id=2077916085]
 
-[node name="coin_holder" parent="UI/Neutral" unique_id=1351381696 instance=ExtResource("1_ebmjs")]
+[node name="coin_bar" parent="UI/Neutral" unique_id=1351381696 instance=ExtResource("1_ebmjs")]
 offset_left = 1770.0
 offset_top = 120.0
 offset_right = 1860.0
 offset_bottom = 1080.0
-script = null
 
 [node name="time_display" parent="UI/Neutral" unique_id=869092175 instance=ExtResource("2_qxrlw")]
 offset_left = 60.0
@@ -101,28 +91,17 @@ offset_top = 30.0
 offset_right = -180.0
 offset_bottom = -900.0
 
-[node name="PlayerP1" parent="UI" unique_id=1430367983 instance=ExtResource("7_v158k")]
+[node name="overlay" parent="UI" unique_id=1302907351 instance=ExtResource("6_v158k")]
 
-[node name="PlayerP2" parent="UI" unique_id=1008100664 instance=ExtResource("7_v158k")]
-side = true
+[node name="Top" type="CanvasLayer" parent="." unique_id=547687911]
 
-[node name="hp_bar_p1" parent="UI" unique_id=1077668139 instance=ExtResource("4_hpbar")]
-offset_left = 330.0
-offset_top = 750.0
-offset_right = 520.0
-offset_bottom = 780.0
-scale = Vector2(0.5603484, 0.088647224)
+[node name="phase_banner" parent="Top" unique_id=1008792977 instance=ExtResource("6_i6g32")]
+layer = 2
 
-[node name="hp_bar_p2" parent="UI" unique_id=1929073471 instance=ExtResource("4_hpbar")]
-offset_left = 330.00003
-offset_top = 180.0
-offset_right = 520.0
-offset_bottom = 210.0
-scale = Vector2(0.53785485, 0.10901629)
-player_id = 2
+[node name="SideBar" parent="Top" unique_id=89001580 instance=ExtResource("6_h4fw4")]
+z_index = 3
 
 [node name="turn_manager" type="Node" parent="." unique_id=1733085982]
 script = ExtResource("7_1l0tm")
 
-[node name="card_effect_system" type="Node" parent="." unique_id=1103284627]
-script = ExtResource("8_cardeff")
+[connection signal="button_down" from="UI/Neutral/Buttons/top_left_button/TEST" to="." method="_test"]

@@ -1,13 +1,5 @@
 [gd_scene format=3 uid="uid://ctlyv2iquyp3g"]
 
-[ext_resource type="Script" uid="uid://hp_bar_script" path="res://Scripts/hp_bar.gd" id="1_hpbar"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7vcx"]
-bg_color = Color(0.78383875, 0.20484272, 9.62615e-08, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5g22p"]
-bg_color = Color(0, 0.67453516, 0.2027606, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_bg"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
 corner_radius_top_left = 4
@@ -15,18 +7,27 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="hp_bar" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1650.0
-offset_bottom = -1155.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_hpbar")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7vcx"]
+bg_color = Color(0.78383875, 0.20484272, 9.62615e-08, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[node name="bg" type="Panel" parent="."]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5g22p"]
+bg_color = Color(0, 0.67453516, 0.2027606, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="hp_bar" type="Control" unique_id=1340430463]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 24.0
+
+[node name="bg" type="Panel" parent="." unique_id=1731257561]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hp_bg")
 
-[node name="hurt" type="Panel" parent="."]
+[node name="hurt" type="Panel" parent="." unique_id=1817072338]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,7 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n7vcx")
 
-[node name="hp" type="Panel" parent="."]
+[node name="hp" type="Panel" parent="." unique_id=190470848]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,40 +54,20 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5g22p")
 
-[node name="hp_label" type="Label" parent="."]
+[node name="hp_label" type="Label" parent="." unique_id=2080330076]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -12.0
-offset_right = 30.0
-offset_bottom = 12.0
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 12
 text = "10/10"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="shield_label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -12.0
-offset_right = 60.0
-offset_bottom = 12.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 16
-text = ""
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="damage_container" type="Node2D" parent="."]
