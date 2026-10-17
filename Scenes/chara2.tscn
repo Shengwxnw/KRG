@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://c2ab8nq8fw2s"]
+
+[ext_resource type="Script" uid="uid://cyhkbq8fhnkl0" path="res://Scripts/character.gd" id="1_li5p4"]
+[ext_resource type="PackedScene" uid="uid://ctlyv2iquyp3g" path="res://Scenes/hp_bar.tscn" id="2_cfbmk"]
+[ext_resource type="FontFile" uid="uid://dwojcdb1c0u7l" path="res://Assets/fonts/AlibabaPuHuiTi-3-55-Regular.ttf" id="3_1o1bf"]
+[ext_resource type="Texture2D" uid="uid://cffhs4orgsljp" path="res://Assets/images/Character_Border_Back.png" id="6_dus1f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kco1d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kco1d"]
+bg_color = Color(1, 1, 1, 0.3529412)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_slkrq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nj7oi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n75om"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4648"]
+bg_color = Color(0.19215687, 0.20784314, 0.21960784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_li5p4"]
+bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfbmk"]
+bg_color = Color(0.18431373, 0.16862746, 0.16078432, 1)
+
+[node name="Chara" type="Control" unique_id=1382025641]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1650.0
+offset_bottom = -840.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_li5p4")
+
+[node name="hp_bar" parent="." unique_id=1340430463 instance=ExtResource("2_cfbmk")]
+layout_mode = 0
+offset_top = -48.52
+offset_bottom = -8.0
+
+[node name="BG" type="Panel" parent="." unique_id=1729205395]
+layout_mode = 0
+offset_right = 270.0
+offset_bottom = 360.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t4648")
+
+[node name="Character" type="Panel" parent="." unique_id=785428367]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 270.0
+offset_bottom = 300.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_li5p4")
+
+[node name="border" type="TextureRect" parent="." unique_id=1274649409]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_dus1f")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=1069228768]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kco1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kco1d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_slkrq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nj7oi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n75om")
+
+[node name="NextState" type="Label" parent="." unique_id=2052591299]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 48.0
+offset_right = 381.0
+offset_bottom = 71.0
+text = "下一状态：Hold"
+
+[node name="State" type="Label" parent="." unique_id=824619450]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 8.0
+offset_right = 376.0
+offset_bottom = 31.0
+text = "当前状态: Tap"
+
+[node name="StreakHolder" type="Panel" parent="." unique_id=1402390717]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cfbmk")
+
+[node name="Streak" type="Label" parent="StreakHolder" unique_id=315942347]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 60.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("3_1o1bf")
+theme_override_font_sizes/font_size = 41
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="Button" to="." method="_on_clicked"]

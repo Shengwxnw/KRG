@@ -40,15 +40,21 @@ func _setup_player():
 
 func _register_hp_bars() -> void:
 	var script := preload("res://Scripts/hp_bar.gd")
+	var chara_script := preload("res://Scripts/character.gd")
 	for node in get_tree().get_nodes_in_group("player"):
 		if node is Player:
-			for char_id in [1, 2]:
-				var raw := node.get_node_or_null("Chara%d/hp_bar" % char_id)
+			# 角色卡按子节点顺序对应 char_id 1/2（即 Player.character1 / character2）
+			var char_id := 0
+			for child in node.get_children():
+				if child.get_script() != chara_script:
+					continue
+				char_id += 1
+				var raw := child.get_node_or_null("hp_bar")
 				if raw:
 					raw.set_script(script)
 					raw.init()
 					GameManager.register_hp_bar(node.side, char_id, raw)
-				var streak := node.get_node_or_null("Chara%d/Streak" % char_id) as Label
+				var streak := child.find_child("Streak", true, false) as Label
 				if streak:
 					GameManager.register_streak_label(node.side, char_id, streak)
 

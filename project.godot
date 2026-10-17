@@ -32,6 +32,10 @@ window/size/resizable=false
 
 enabled=PackedStringArray("res://addons/nklbdev.importality/plugin.cfg")
 
+[gui]
+
+theme/custom_font="res://Assets/fonts/AlibabaPuHuiTi-3-55-Regular.ttf"
+
 [input]
 
 deal_damage={

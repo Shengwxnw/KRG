@@ -1,73 +1,54 @@
 [gd_scene format=3 uid="uid://ctlyv2iquyp3g"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_bg"]
-bg_color = Color(0.2, 0.2, 0.2, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[ext_resource type="Texture2D" uid="uid://bpukentbtg7iv" path="res://Assets/e93327060d1021720b3d223aa13f508f.png" id="1_7yw3h"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7vcx"]
-bg_color = Color(0.78383875, 0.20484272, 9.62615e-08, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hurt"]
+bg_color = Color(0.78383875, 0.20484272, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5g22p"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp"]
 bg_color = Color(0, 0.67453516, 0.2027606, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [node name="hp_bar" type="Control" unique_id=1340430463]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 150.0
-offset_bottom = 24.0
+offset_right = 270.0
+offset_bottom = 40.52
 
-[node name="bg" type="Panel" parent="." unique_id=1731257561]
+[node name="frame" type="TextureRect" parent="." unique_id=867010062]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hp_bg")
+mouse_filter = 2
+texture = ExtResource("1_7yw3h")
+expand_mode = 1
 
 [node name="hurt" type="Panel" parent="." unique_id=1817072338]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n7vcx")
+layout_mode = 0
+offset_top = 5.58
+offset_right = 270.0
+offset_bottom = 35.04
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hurt")
 
 [node name="hp" type="Panel" parent="." unique_id=190470848]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5g22p")
+layout_mode = 0
+offset_top = 5.58
+offset_right = 270.0
+offset_bottom = 35.04
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hp")
 
 [node name="hp_label" type="Label" parent="." unique_id=2080330076]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 20.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 12
-text = "10/10"
+layout_mode = 0
+offset_right = 270.0
+offset_bottom = 40.52
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 30
+text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1

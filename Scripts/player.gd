@@ -20,7 +20,7 @@ const DECK_P1_Y     := 886.975
 const DECK_P2_Y     := 200.975
 
 @onready var character1 : Control = $Chara1
-@onready var character2 : Control = $Chara2
+@onready var character2 : Control = $Chara
 @onready var equipment: Node = $Equipment
 @onready var hand: Node = $Hand
 @onready var field: Node = $Field
@@ -28,11 +28,6 @@ const DECK_P2_Y     := 200.975
 @onready var deck_button: Button = $Button
 @onready var game: Node
 @onready var card_scene: PackedScene = preload("res://Scenes/card.tscn")
-
-var _chara1_original: Vector2
-var _chara2_original: Vector2
-var _chara1_active: Vector2
-var _chara2_active: Vector2
 
 
 func _ready() -> void:
@@ -46,8 +41,7 @@ func _ready() -> void:
 	
 	setup_layout()
 	setup_cards()
-	_store_positions()
-	_apply_active_position()
+	_apply_active_card()
 	GameManager.active_character_changed.connect(_on_active_character_changed)
 
 
@@ -72,21 +66,10 @@ func setup_layout() -> void:
 						nieto.position.y = 1200 - nieto.position.y - nieto.size.y * nieto.scale.x
 
 
-func _store_positions() -> void:
-	_chara1_original = character1.position
-	_chara2_original = character2.position
-	var forward_dir := -1 if side == 1 else 1
-	_chara1_active = _chara1_original + Vector2(0, forward_dir * 100)
-	_chara2_active = _chara2_original + Vector2(0, forward_dir * 100)
-
-
-func _apply_active_position() -> void:
-	if active_char == 1:
-		character1.position = _chara1_active
-		character2.position = _chara2_original
-	else:
-		character1.position = _chara1_original
-		character2.position = _chara2_active
+func _apply_active_card() -> void:
+	# 出战/后台只差边框颜色，两个角色的位置永远不变
+	character1.set_active_card(active_char == 1)
+	character2.set_active_card(active_char == 2)
 
 
 func switch_character() -> void:
@@ -122,20 +105,8 @@ func _get_char_id(char_node: Control) -> int:
 func _on_active_character_changed(player_id: int, new_char: int) -> void:
 	if player_id != side:
 		return
-	var prev := active_char
 	active_char = new_char
-	_animate_char_switch(prev, new_char)
-
-
-func _animate_char_switch(prev: int, new_char: int) -> void:
-	var prev_node := character1 if prev == 1 else character2
-	var new_node := character1 if new_char == 1 else character2
-	var prev_target := _chara1_original if prev == 1 else _chara2_original
-	var new_target := _chara1_active if new_char == 1 else _chara2_active
-
-	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(prev_node, "position", prev_target, 0.35)
-	tween.parallel().tween_property(new_node, "position", new_target, 0.35)
+	_apply_active_card()
 
 
 func _on_deck_pressed() -> void:

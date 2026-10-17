@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dohlrg1d44jo4" path="res://Scenes/chara.tscn" id="1_6t5aa"]
 [ext_resource type="Script" uid="uid://db80htcjjq3io" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://oqhmki04kxmi" path="res://Scenes/field.tscn" id="2_vgqql"]
+[ext_resource type="PackedScene" uid="uid://c2ab8nq8fw2s" path="res://Scenes/chara2.tscn" id="3_x3wgy"]
 [ext_resource type="Script" uid="uid://b6bdunopevlxx" path="res://Scripts/hand_area.gd" id="5_x3wgy"]
 [ext_resource type="PackedScene" uid="uid://4yhimu3ctyvy" path="res://Scenes/overlay.tscn" id="6_x3wgy"]
 
@@ -29,11 +30,11 @@ offset_top = 750.0
 offset_right = -630.0
 offset_bottom = -61.45996
 
-[node name="Chara2" parent="." unique_id=375836267 instance=ExtResource("1_6t5aa")]
+[node name="Chara" parent="." unique_id=435242944 instance=ExtResource("3_x3wgy")]
 offset_left = 630.0
 offset_top = 750.0
 offset_right = -1020.0
-offset_bottom = -61.45996
+offset_bottom = -90.0
 
 [node name="Equipment" type="Node" parent="." unique_id=864131556]
 
